@@ -8,6 +8,18 @@
 
 > 有问题请开 issue 或者 discussions。
 
+> 很多人反馈 heroku 封号，我自己的还好用，请大家反馈，如果大部分人都被封号，我就准备开个新坑，反正免费服务也有其他家。。只是我懒，同时维护多个实在没有时间。
+
+## **请大家不要跑速度测试，请用 youtube 测试。**
+
+
+## Change log
+
+应需求，加上首页伪装，每次部署都会随机生成首页，如果你有想法，请自己把想要的html放入到 项目html 文件，然后后续 action 部署会自动拿到。
+
+## !!!!!!! **对于一些老用户是 breaking change, 对 ws 的 path 做了修改, 请注意查看客户端配置**
+
+
 首先查看别人的 [youtube 教程](https://www.youtube.com/watch?v=xHZyDsFYdvA)，了解怎么配置 v2ray-heroku。**本项目使用最新 VLESS 协议，请在客户端配置选择 VLESS**。  
 [详细 VLESS websocket 客户端配置](#vless-websocket-客户端配置) 。
 
@@ -22,6 +34,8 @@
 
 - 利用 cloudflare CDN 进行加速。
 - **利用 [cloudflare tunnel](https://www.cloudflare.com/products/tunnel/) 进行加速。**
+- **随机生成首页。每次部署都会产生随机首页。**
+    1. 如想自定义主页，请自行在仓库中生成 index.html 放入 `html` 中
 
 ```text
 项目Dockerfile是基于V2fly 官方镜像制作。仅仅增加生产配置文件的脚本。重新部署就可以更新到最新的v2ray。
@@ -34,7 +48,11 @@
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-> 貌似在这个 repo 下 点击 一键部署貌似heroku 提示违反某些原则，但是action 正常工作！！建议 fork 时候，项目名字，尽量不要带有 v2ray 关键字。
+> 貌似在这个 repo 下 点击 一键部署貌似 heroku 提示违反某些原则，但是action 正常工作！！建议 fork 时候，项目名字，尽量不要带有 v2ray 关键字。
+
+> 如果被heroku 提示错误，请用 github action 来部署。
+
+> 部署成功后，可以先用浏览器访问 ***.herokuapp.com， 查看页面是否能正常访问。会显示一个随机的维基百科页面。
 
 ## Github Actions 管理
 
@@ -138,6 +156,9 @@ addEventListener("fetch", (event) => {
 });
 ```
 
+如果 worker 不好用，请用自己域名代理 worker
+https://owo.misaka.rest/cf-workers-ban-solution/
+
 为 worker 选择速度更快的 IP。
 https://github.com/badafans/better-cloudflare-ip
 
@@ -195,8 +216,13 @@ https://github.com/badafans/better-cloudflare-ip
 
 ### v2rayN
 
+
 换成 [V2rayN](https://github.com/2dust/v2rayN)
 
 别人的配置教程参考，https://v2raytech.com/v2rayn-config-tutorial/.
 
 ![v2rayN](/readme-data/V2rayN.jpg)
+
+cloudflare worker ip 配置
+
+![v2rayN1](/readme-data/V2rayN1.jpg)
